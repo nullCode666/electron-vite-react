@@ -7,8 +7,8 @@ import './update.css'
 const Update = () => {
   const [checking, setChecking] = useState(false)
   const [updateAvailable, setUpdateAvailable] = useState(false)
-  const [versionInfo, setVersionInfo] = useState<VersionInfo>()
-  const [updateError, setUpdateError] = useState<ErrorType>()
+  const [versionInfo, setVersionInfo] = useState<any>()
+  const [updateError, setUpdateError] = useState<any>()
   const [progressInfo, setProgressInfo] = useState<Partial<ProgressInfo>>()
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [modalBtn, setModalBtn] = useState<{
@@ -36,7 +36,7 @@ const Update = () => {
     }
   }
 
-  const onUpdateCanAvailable = useCallback((_event: Electron.IpcRendererEvent, arg1: VersionInfo) => {
+  const onUpdateCanAvailable = useCallback((_event: Electron.IpcRendererEvent, arg1: any) => {
     setVersionInfo(arg1)
     setUpdateError(undefined)
     // Can be update
@@ -53,7 +53,7 @@ const Update = () => {
     }
   }, [])
 
-  const onUpdateError = useCallback((_event: Electron.IpcRendererEvent, arg1: ErrorType) => {
+  const onUpdateError = useCallback((_event: Electron.IpcRendererEvent, arg1: any) => {
     setUpdateAvailable(false)
     setUpdateError(arg1)
   }, [])
