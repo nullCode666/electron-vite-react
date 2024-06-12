@@ -19,6 +19,7 @@
     "e2e": "playwright test"
   },
   "dependencies": {
+    "antd": "^5.18.0",
     "electron-updater": "^6.1.8"
   },
   "devDependencies": {

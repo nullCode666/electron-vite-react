@@ -44,9 +44,11 @@ const preload = path.join(__dirname, '../preload/index.mjs')
 const indexHtml = path.join(RENDERER_DIST, 'index.html')
 
 async function createWindow() {
+  
   win = new BrowserWindow({
-    title: 'Main window',
+    title: '立冬工具',
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
+    backgroundColor: 'pink',//窗口背景颜色
     webPreferences: {
       preload,
       // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
@@ -79,6 +81,12 @@ async function createWindow() {
 
   // Auto update
   update(win)
+
+  ipcMain.on('message-from-renderer', (event, arg) => {
+    console.log(arg); // 将会打印 'Hello from the Renderer process!'
+    event.reply('message-from-main', 'Hello back from the Main process!');
+  });
+
 }
 
 app.whenReady().then(createWindow)

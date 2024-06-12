@@ -3,11 +3,23 @@ import UpdateElectron from '@/components/update'
 import logoVite from './assets/logo-vite.svg'
 import logoElectron from './assets/logo-electron.svg'
 import './App.css'
+import { Button } from 'antd'
+
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const communication=()=>{
+    window.ipcRenderer.send("message-from-renderer",{type:"test",params:{
+      id:"1",
+      name:"zc",
+      age:18
+    }})
+  }
+
   return (
     <div className='App'>
+      <Button onClick={()=>communication()}>开始通讯</Button>
       <div className='logo-box'>
         <a href='https://github.com/electron-vite/electron-vite-react' target='_blank'>
           <img src={logoVite} className='logo vite' alt='Electron + Vite logo' />
