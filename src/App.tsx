@@ -1,22 +1,49 @@
-import React from 'react';
-import LoginPage, { Username, Password, Submit, Title, Logo, Reset } from '@react-login-page/page1';
-import LoginLogo from 'react-login-page/logo';
+import { Button, Form, Image, Input } from "antd"
 
-const styles = { height: "100vh",width:"100vw" };
+import LOGIN from '@/assets/login.png';
 
-const Demo = () => (
-  <div style={styles}>
-    <LoginPage>
-      <Username name="userUserName" />
-      <Password placeholder="请输入密码" name="userPassword" />
-      <Submit>提交</Submit>
-      <Reset disabled>重置</Reset>
-      <Title />
-      <Logo>
-        <LoginLogo />
-      </Logo>
-    </LoginPage>
-  </div>
-);
+import "./App.less";
 
-export default Demo;
+export default () => {
+
+  const onFinish = () => {
+
+  }
+
+  const onFinishFailed = () => {
+
+  }
+
+  return (
+    <div className="content">
+      <h1 style={{ marginTop: "100px" }}>欢迎使用这个软件</h1>
+      <Form
+        name="login"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600, margin: "40px 0" }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="请输入开机密码"
+          name="password"
+          rules={[{ required: true, message: '请输入开机密码！！！' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Form>
+      <div className="footer">
+        <Button type="default" htmlType="submit">
+          联系作者
+        </Button>
+        <Button type="primary" htmlType="submit">
+          登陆
+        </Button>
+      </div>
+    </div>
+  )
+
+}
